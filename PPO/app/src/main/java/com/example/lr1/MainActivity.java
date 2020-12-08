@@ -12,18 +12,12 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
 {
-    Button btnCurrency;
-    Button btnDistance;
-    Button btnWeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnCurrency = (Button) findViewById(R.id.btnCurrency);
-        btnDistance = (Button) findViewById(R.id.btnDistance);
-        btnWeight = (Button) findViewById(R.id.btnWeight);
     }
 
     public void onClickCurrency(View v)
