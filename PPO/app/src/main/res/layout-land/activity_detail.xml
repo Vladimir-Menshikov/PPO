@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".DistanceActivity" >
+    android:orientation="horizontal">
 
     <fragment
-        android:id="@+id/dataDistanceFragment"
+        android:id="@+id/dataFragment"
         android:name="com.example.lr1.DataFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +15,7 @@
         tools:layout="@layout/fragment_data" />
 
     <fragment
-        android:id="@+id/keyboardDistanceFragment"
+        android:id="@+id/keyboardFragment"
         android:name="com.example.lr1.KeyboardFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -28,17 +28,20 @@ public class MainActivity extends AppCompatActivity
 
     public void onClickCurrency(View v)
     {
-        Intent intent = new Intent(this, CurrencyActivity.class);
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra("value", "Currency");
         startActivity(intent);
     }
     public void onClickDistance(View v)
     {
-        Intent intent = new Intent(this, DistanceActivity.class);
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra("value", "Distance");
         startActivity(intent);
     }
     public void onClickWeight(View v)
     {
-        Intent intent = new Intent(this, WeightActivity.class);
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra("value", "Weight");
         startActivity(intent);
     }
 }
