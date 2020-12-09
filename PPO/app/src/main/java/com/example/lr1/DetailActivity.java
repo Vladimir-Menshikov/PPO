@@ -20,13 +20,13 @@ import android.widget.Toast;
 
 public class DetailActivity extends AppCompatActivity implements KeyboardFragment.OnFragmentInteractionListener,
         DataFragment.OnFragmentInteractionListener {
-    String[] currencyUnits = {"BYN", "USD", "EUR"};
-    String[] distanceUnits = {"m", "mi", "ft"};
-    String[] weightUnits = {"kg", "lbs", "car"};
+    String[] timeUnits = {"s", "min", "h"};
+    String[] distanceUnits = {"mm", "m", "km"};
+    String[] weightUnits = {"g", "kg", "t"};
     DataFragment dataFragment;
     Spinner spnFrom;
     Spinner spnTo;
-    String value;
+    String category;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +35,13 @@ public class DetailActivity extends AppCompatActivity implements KeyboardFragmen
         dataFragment = (DataFragment) getFragmentManager().findFragmentById(R.id.dataFragment);
 
         Intent intent = getIntent();
-        value = intent.getStringExtra("value");
+        category = intent.getStringExtra("category");
         ArrayAdapter<String> adapter;
-        if (value.equals("Currency"))
+        if (category.equals("Time"))
         {
-            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, currencyUnits);
+            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, timeUnits);
         }
-        else if (value.equals("Distance"))
+        else if (category.equals("Distance"))
         {
             adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, distanceUnits);
         }
@@ -124,204 +124,25 @@ public class DetailActivity extends AppCompatActivity implements KeyboardFragmen
 
     public void convert()
     {
-        if (value.equals("Currency"))
-        {
-            currencyConvert();
-        }
-        else if (value.equals("Distance"))
-        {
-            distanceConvert();
-        }
-        else
-        {
-            weightConvert();
-        }
-    }
-
-    public void currencyConvert()
-    {
         String strValue = ((EditText)dataFragment.getView().findViewById(R.id.etFrom)).getText().toString();
         double value;
+        int from;
+        int to;
         if (!strValue.isEmpty())
+        {
             value = Double.parseDouble(strValue);
+            from = spnFrom.getSelectedItemPosition();
+            to = spnTo.getSelectedItemPosition();
+        }
         else
             return;
-        switch (spnFrom.getSelectedItem().toString())
-        {
-            case "BYN":
-                switch (spnTo.getSelectedItem().toString())
-                {
-                    case "BYN":
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "USD":
-                        value *= 0.38;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "EUR":
-                        value *= 0.33;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                }
-                break;
-            case "USD":
-                switch (spnTo.getSelectedItem().toString())
-                {
-                    case "BYN":
-                        value *= 2.6;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "USD":
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "EUR":
-                        value *= 0.86;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                }
-                break;
-            case "EUR":
-                switch (spnTo.getSelectedItem().toString())
-                {
-                    case "BYN":
-                        value *= 3.04;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "USD":
-                        value *= 1.17;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "EUR":
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                }
-                break;
 
-        }
-    }
-
-    public void distanceConvert()
-    {
-        String strValue = ((EditText)dataFragment.getView().findViewById(R.id.etFrom)).getText().toString();
-        double value;
-        if (!strValue.isEmpty())
-            value = Double.parseDouble(strValue);
+        if (category.equals("Time"))
+            value *= Math.pow(60, from - to);
         else
-            return;
-        switch (spnFrom.getSelectedItem().toString())
-        {
-            case "m":
-                switch (spnTo.getSelectedItem().toString())
-                {
-                    case "m":
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "mi":
-                        value *= 0.0006213712;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "ft":
-                        value *= 3.280839895;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                }
-                break;
-            case "mi":
-                switch (spnTo.getSelectedItem().toString())
-                {
-                    case "m":
-                        value *= 1609.344;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "mi":
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "ft":
-                        value *= 5280;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                }
-                break;
-            case "ft":
-                switch (spnTo.getSelectedItem().toString())
-                {
-                    case "m":
-                        value *= 0.3048;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "mi":
-                        value *= 0.0001893939;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "ft":
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                }
-                break;
+            value *= Math.pow(1000, from - to);
 
-        }
-    }
-
-    public void weightConvert()
-    {
-        String strValue = ((EditText)dataFragment.getView().findViewById(R.id.etFrom)).getText().toString();
-        double value;
-        if (!strValue.isEmpty())
-            value = Double.parseDouble(strValue);
-        else
-            return;
-        switch (spnFrom.getSelectedItem().toString())
-        {
-            case "kg":
-                switch (spnTo.getSelectedItem().toString())
-                {
-                    case "kg":
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "lbs":
-                        value *= 2.2046226218;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "car":
-                        value *= 5000;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                }
-                break;
-            case "lbs":
-                switch (spnTo.getSelectedItem().toString())
-                {
-                    case "kg":
-                        value *= 0.45359237;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "lbs":
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "car":
-                        value *= 2267.96185;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                }
-                break;
-            case "car":
-                switch (spnTo.getSelectedItem().toString())
-                {
-                    case "kg":
-                        value *= 0.0002;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "lbs":
-                        value *= 0.0004409245;
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                    case "car":
-                        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
-                        break;
-                }
-                break;
-
-        }
+        ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
     }
 
     @Override

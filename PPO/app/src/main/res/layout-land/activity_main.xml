@@ -6,12 +6,12 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btnCurrency"
+        android:id="@+id/btnTime"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_margin="5dp"
-        android:onClick="onClickCurrency"
-        android:text="@string/btnCurrencyText"
+        android:onClick="onClickTime"
+        android:text="@string/btnTimeText"
         android:textSize="14sp" />
 
     <Button

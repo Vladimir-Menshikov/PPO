@@ -20,22 +20,22 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
     }
 
-    public void onClickCurrency(View v)
+    public void onClickTime(View v)
     {
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra("value", "Currency");
+        intent.putExtra("category", "Time");
         startActivity(intent);
     }
     public void onClickDistance(View v)
     {
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra("value", "Distance");
+        intent.putExtra("category", "Distance");
         startActivity(intent);
     }
     public void onClickWeight(View v)
     {
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra("value", "Weight");
+        intent.putExtra("category", "Weight");
         startActivity(intent);
     }
 }
