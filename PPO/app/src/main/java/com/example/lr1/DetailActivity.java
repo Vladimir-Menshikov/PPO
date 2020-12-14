@@ -23,6 +23,9 @@ public class DetailActivity extends AppCompatActivity implements KeyboardFragmen
     String[] timeUnits = {"s", "min", "h"};
     String[] distanceUnits = {"mm", "m", "km"};
     String[] weightUnits = {"g", "kg", "t"};
+    double [][] timeK = {{1,1./60,1./3600}, {60,1,1./60}, {3600,60,1}};
+    double [][] distanceK = {{1,0.001,0.000001}, {1000,1,0.001}, {1000000,1000,1}};
+    double [][] weightK = {{1,0.001,0.000001}, {1000,1,0.001}, {1000000,1000,1}};
     DataFragment dataFragment;
     Spinner spnFrom;
     Spinner spnTo;
@@ -138,10 +141,11 @@ public class DetailActivity extends AppCompatActivity implements KeyboardFragmen
             return;
 
         if (category.equals("Time"))
-            value *= Math.pow(60, from - to);
+            value *= timeK[from][to];
+        else if (category.equals("Distance"))
+            value *= distanceK[from][to];
         else
-            value *= Math.pow(1000, from - to);
-
+            value *= weightK[from][to];
         ((EditText)dataFragment.getView().findViewById(R.id.etTo)).setText(Double.toString(value));
     }
 
