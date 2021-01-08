@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        tools:context=".GameActivity"
+        android:orientation="vertical">
+
+    <com.example.ppo3.BoardGridView
+            android:id="@+id/game_field"
+            android:layout_width="match_parent"
+            android:layout_height="310dp"
+            android:padding="20dp"
+            custom:fieldColor="#2196F3"
+
+            custom:gameInitialize="false" />
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_game_state"
+                android:text="@string/first_player_move"
+                android:textSize="20sp"
+                android:layout_marginStart="20dp">
+
+        </TextView>
+
+
+        <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_players_connected"
+                android:text="@string/_1"
+                android:textSize="20sp"
+                android:layout_marginStart="20dp">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+    </LinearLayout>
+
+</LinearLayout>

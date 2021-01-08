@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Battleship</string>
+
+    <string name="sign_out_text">Sign out</string>
+    <string name="sign_in_description_text">Sign in to start playing.\n
+        Play with friends and other people online!</string>
+
+    <string name="room_list_header_text">List of room</string>
+    <string name="room_list_empty_text">The list of game rooms is empty, but\n
+        you can create your own room.</string>
+
+    <string name="stats_text">Stats</string>
+    <string name="stats_empty_text">Stats is empty,\n
+        you haven\'t play any games.</string>
+
+    <string name="room_owner_id_label_text">Owner ID:</string>
+    <string name="create_room_text">Create room</string>
+    <string name="room_id_label_text">Room ID</string>
+    <string name="password_label_text">Password</string>
+    <string name="protect_by_pin_text">Protect by PIN</string>
+
+    <string name="your_created_room_text">Your created room</string>
+    <string name="remove_room_text">Remove room</string>
+
+    <string name="upload_image">Upload Image</string>
+    <string name="gravatar">Gravatar</string>
+
+    <string name="first_player_move">First player move</string>
+    <string name="_1">1</string>
+
+    <string name="facebook_app_id">389406408846121</string>
+    <string name="fb_login_protocol_scheme">fb389406408846121</string>
+
+
+
+</resources>
